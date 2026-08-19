@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="EcoSpotterPostPrototype.CreatePostView"
+             
+             BackgroundColor="#F5F5F7">
+
+    <Grid>
+        <!-- ========================================== -->
+        <!-- SCREEN 1: THE INITIAL CAMERA LIVE PREVIEW  -->
+        <!-- ========================================== -->
+        <Grid x:Name="CameraStateLayout" IsVisible="True">
+            <toolkit:CameraView x:Name="cameraView" 
+                                HorizontalOptions="FillAndExpand" 
+                                VerticalOptions="FillAndExpand" 
+                                MediaCaptured="cameraView_MediaCaptured"/>
+
+            <Label x:Name="CameraTitle"
+                   Text="Take before image!" 
+                   TextColor="White" 
+                   FontSize="22" 
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center" 
+                   VerticalOptions="Start" 
+                   Margin="0,60,0,0"
+                   Shadow="{Shadow Brush=Black, Offset='0,2', Radius=4, Opacity=0.5}"/>
+
+            <Button x:Name="CaptureBeforeBtn"
+                    HorizontalOptions="Center" 
+                    VerticalOptions="End" 
+                    Margin="0,0,0,40"
+                    HeightRequest="70" 
+                    WidthRequest="70" 
+                    CornerRadius="35"
+                    BackgroundColor="White" 
+                    BorderWidth="5" 
+                    BorderColor="#CCCCCC"
+                    Clicked="OnShutterClicked" />
+        </Grid>
+
+        <!-- ========================================== -->
+        <!-- SCREEN 2: THE POST FORMULATION DETAILS    -->
+        <!-- ========================================== -->
+        <ScrollView x:Name="FormStateLayout" IsVisible="False" Padding="20, 40, 20, 20">
+            <VerticalStackLayout Spacing="24">
+
+                <!-- 1. Before Image Preview Card -->
+                <VerticalStackLayout Spacing="8" HorizontalOptions="Center">
+                    <Label Text="Before Image" FontAttributes="Bold" FontSize="16" TextColor="#333333" HorizontalOptions="Center"/>
+                    <Border StrokeShape="RoundRectangle 12" StrokeThickness="0" HeightRequest="200" WidthRequest="200">
+                        <Image x:Name="BeforeImagePreview" Aspect="AspectFill" BackgroundColor="#E0E0E0"/>
+                    </Border>
+                </VerticalStackLayout>
+
+                <!-- 2. Description Input Field -->
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="Description" FontAttributes="Bold" FontSize="16" TextColor="#333333"/>
+                    <Border StrokeShape="RoundRectangle 8" Stroke="#CCCCCC" StrokeThickness="1" BackgroundColor="White">
+                        <Editor x:Name="DescriptionEditor" 
+                                Placeholder="Enter a description about this eco spot..." 
+                                HeightRequest="120" 
+                                Margin="5"
+                                AutoSize="Disabled"/>
+                    </Border>
+                </VerticalStackLayout>
+
+                <!-- 3. Take After Image Section -->
+                <VerticalStackLayout Spacing="8" HorizontalOptions="Center" x:Name="AfterImagePreviewContent" IsVisible="False">
+                    <Label Text="After Image" FontAttributes="Bold" FontSize="16" TextColor="#333333" HorizontalOptions="Center"/>
+                    <Border StrokeShape="RoundRectangle 12" StrokeThickness="0" HeightRequest="200" WidthRequest="200">
+                        <Image x:Name="AfterImagePreviewImage" Aspect="AspectFill" BackgroundColor="#E0E0E0"/>
+                    </Border>
+                </VerticalStackLayout>
+                
+                <VerticalStackLayout Spacing="12" Margin="0,10,0,0" x:Name="AfterImageButton" IsVisible="True">
+                    <Label Text="Take after image!" FontAttributes="Bold" FontSize="18" TextColor="#333333" HorizontalOptions="Center"/>
+                    <Button x:Name="CaptureAfterBtn"
+                            Text="Take After Picture" 
+                            BackgroundColor="#2D9CDB" 
+                            TextColor="White"
+                            HeightRequest="55"
+                            CornerRadius="8"
+                            FontAttributes="Bold"
+                            Clicked="OnCaptureAfterClicked"/>
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Spacing="12" Margin="0,10,0,0" x:Name="PostBtnContainer" IsVisible="False">
+                    <Button x:Name="PostBtn"
+                            Text="Post" 
+                            BackgroundColor="#2D9CDB" 
+                            TextColor="White"
+                            HeightRequest="55"
+                            CornerRadius="8"
+                            FontAttributes="Bold"
+                            Clicked="PostBtn_Clicked"/>
+                </VerticalStackLayout>
+
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+</ContentPage>

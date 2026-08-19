@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="EcoSpotterPostPrototype.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:view="clr-namespace:EcoSpotterPostPrototype"
+    Title="EcoSpotterPostPrototype"
+    Shell.NavBarIsVisible="False">
+
+
+    <TabBar x:Name="MainTabBar">
+        
+        <!--Map tab bliver indsat fra code-behind, da den windows ikke har et indbygget kort-->
+        
+        <Tab Icon="feed.png" Route="FeedView">
+            <ShellContent ContentTemplate="{DataTemplate view:FeedView}" />
+        </Tab>
+
+        <Tab Icon="createpost.png" Route="CreatePostView">
+            <ShellContent ContentTemplate="{DataTemplate view:CreatePostView}" />
+        </Tab>
+        
+    </TabBar>
+</Shell>

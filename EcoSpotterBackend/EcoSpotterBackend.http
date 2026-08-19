@@ -1,0 +1,6 @@
+@EcoSpotterBackend_HostAddress = http://localhost:5138
+
+GET {{EcoSpotterBackend_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
